@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kari Dev - Learn. Build. Share.</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #0ea5e9;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --light: #f8fafc;
+            --border: #e2e8f0;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--light);
+        }
+        
+        a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Header */
+        header {
+            background: white;
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        .logo span {
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--gray);
+            font-weight: 500;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+        
+        .btn:hover {
+            background: var(--primary-dark);
+            color: white;
+            text-decoration: none;
+        }
+        
+        /* Hero */
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn-outline {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* Section */
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Roadmap */
+        .roadmap {
+            background: white;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .project-card {
+            background: var(--light);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .project-number {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 32px;
+            font-weight: 700;
+            font-size: 0.875rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .project-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-card p {
+            color: var(--gray);
+            font-size: 0.925rem;
+            margin-bottom: 1rem;
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .tag {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            color: var(--gray);
+        }
+        
+        /* Roles */
+        .roles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .role-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .role-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .role-card h3 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .role-card p {
+            color: var(--gray);
+            font-size: 0.925rem;
+        }
+        
+        /* How to Start */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            counter-reset: step;
+        }
+        
+        .step {
+            text-align: center;
+            position: relative;
+        }
+        
+        .step-number {
+            width: 48px;
+            height: 48px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 0 auto 1rem;
+        }
+        
+        .step h3 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .step p {
+            color: var(--gray);
+            font-size: 0.925rem;
+        }
+        
+        /* Stats */
+        .stats {
+            background: var(--dark);
+            color: white;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        
+        .stat-label {
+            color: #94a3b8;
+            margin-top: 0.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: white;
+            border-top: 1px solid var(--border);
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: var(--gray);
+        }
+        
+        .copyright {
+            color: var(--gray);
+            font-size: 0.875rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            section {
+                padding: 3rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Kari<span>Dev</span></div>
+            <div class="nav-links">
+                <a href="#roadmap">Roadmap</a>
+                <a href="#roles">Roles</a>
+                <a href="#start">Get Started</a>
+                <a href="https://github.com/kari-dev" target="_blank">GitHub</a>
+            </div>
+            <a href="https://github.com/kari-dev/knowledge-hub" class="btn">Join Community</a>
+        </nav>
+    </header>
+    
+    <section class="hero">
+        <h1>Learn. Build. Share.</h1>
+        <p>Kari Dev is an open learning community where developers grow through real projects, contribute code, and become mentors.</p>
+        <div class="hero-buttons">
+            <a href="#start" class="btn">Start Learning</a>
+            <a href="https://github.com/kari-dev" class="btn btn-outline">View on GitHub</a>
+        </div>
+    </section>
+    
+    <section id="roadmap" class="roadmap">
+        <h2 class="section-title">Learning Roadmap</h2>
+        <p class="section-subtitle">10 progressive projects that take you from beginner to job-ready developer.</p>
+        
+        <div class="projects-grid">
+            <div class="project-card">
+                <span class="project-number">01</span>
+                <h3>Portfolio Website</h3>
+                <p>Build a personal portfolio with HTML, CSS, and JavaScript.</p>
+                <div class="project-tags">
+                    <span class="tag">HTML</span>
+                    <span class="tag">CSS</span>
+                    <span class="tag">Responsive</span>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <span class="project-number">02</span>
+                <h3>Todo App</h3>
+                <p>Create a task manager with localStorage persistence.</p>
+                <div class="project-tags">
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">LocalStorage</span>
+                    <span class="tag">CRUD</span>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <span class="project-number">03</span>
+                <h3>Expense Tracker</h3>
+                <p>Track income and expenses with interactive charts.</p>
+                <div class="project-tags">
+                    <span class="tag">Chart.js</span>
+                    <span class="tag">Data Viz</span>
+                    <span class="tag">Finance</span>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <span class="project-number">04</span>
+                <h3>JWT Auth System</h3>
+                <p>Implement secure authentication with JWT and bcrypt.</p>
+                <div class="project-tags">
+                    <span class="tag">JWT</span>
+                    <span class="tag">Security</span>
+                    <span class="tag">Express</span>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <span class="project-number">05</span>
+                <h3>CRUD API</h3>
+                <p>Build a RESTful API with Express and MongoDB.</p>
+                <div class="project-tags">
+                    <span class="tag">REST</span>
+                    <span class="tag">MongoDB</span>
+                    <span class="tag">API</span>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <span class="project-number">06</span>
+                <h3>Mini Ecommerce</h3>
+                <p>Create a storefront with product listings and cart.</p>
+                <div class="project-tags">
+                    <span class="tag">React</span>
+                    <span class="tag">Zustand</span>
+                    <span class="tag">Ecommerce</span>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <span class="project-number">07</span>
+                <h3>Realtime Chat</h3>
+                <p>Build a chat app with Socket.io and WebSockets.</p>
+                <div class="project-tags">
+                    <span class="tag">Socket.io</span>
+                    <span class="tag">WebSocket</span>
+                    <span class="tag">Realtime</span>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <span class="project-number">08</span>
+                <h3>Booking System</h3>
+                <p>Create a reservation system with email notifications.</p>
+                <div class="project-tags">
+                    <span class="tag">Calendar</span>
+                    <span class="tag">Nodemailer</span>
+                    <span class="tag">Booking</span>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <span class="project-number">09</span>
+                <h3>Admin Dashboard</h3>
+                <p>Build a data dashboard with charts and tables.</p>
+                <div class="project-tags">
+                    <span class="tag">Recharts</span>
+                    <span class="tag">Dashboard</span>
+                    <span class="tag">Analytics</span>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <span class="project-number">10</span>
+                <h3>AI Study Assistant</h3>
+                <p>Create an AI-powered learning assistant with OpenAI.</p>
+                <div class="project-tags">
+                    <span class="tag">OpenAI</span>
+                    <span class="tag">FastAPI</span>
+                    <span class="tag">AI</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="roles" class="roles">
+        <h2 class="section-title">Community Roles</h2>
+        <p class="section-subtitle">Grow from learner to mentor as you contribute to the community.</p>
+        
+        <div class="roles-grid">
+            <div class="role-card">
+                <div class="role-icon">🌱</div>
+                <h3>Member</h3>
+                <p>Learn and contribute. Fork projects, complete challenges, and build your portfolio.</p>
+            </div>
+            
+            <div class="role-card">
+                <div class="role-icon">🎓</div>
+                <h3>Mentor</h3>
+                <p>Help learners, review projects, and guide others after completing 5+ projects.</p>
+            </div>
+            
+            <div class="role-card">
+                <div class="role-icon">🛡️</div>
+                <h3>Maintainer</h3>
+                <p>Review docs and PRs, manage issues, and keep the community organized.</p>
+            </div>
+            
+            <div class="role-card">
+                <div class="role-icon">👑</div>
+                <h3>Owner</h3>
+                <p>Community founder. Sets vision and direction for Kari Dev.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="start" class="steps-section">
+        <h2 class="section-title">How to Start</h2>
+        <p class="section-subtitle">Four simple steps to begin your journey with Kari Dev.</p>
+        
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Fork a Project</h3>
+                <p>Choose any project from the roadmap and fork it to your GitHub account.</p>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Build & Learn</h3>
+                <p>Follow the starter guide and step-by-step docs to build the project.</p>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Submit PR</h3>
+                <p>Open a Pull Request when done. Mentors will review and give feedback.</p>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>Level Up</h3>
+                <p>Complete more projects, help others, and become a mentor.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="stats">
+        <div class="stats-grid">
+            <div>
+                <div class="stat-number">10</div>
+                <div class="stat-label">Projects</div>
+            </div>
+            <div>
+                <div class="stat-number">4</div>
+                <div class="stat-label">Community Roles</div>
+            </div>
+            <div>
+                <div class="stat-number">∞</div>
+                <div class="stat-label">Learning Opportunities</div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="https://github.com/kari-dev/knowledge-hub">Knowledge Hub</a>
+                <a href="https://github.com/kari-dev">All Repos</a>
+                <a href="https://github.com/kari-dev/knowledge-hub/blob/main/CONTRIBUTING.md">Contributing</a>
+                <a href="https://github.com/kari-dev/knowledge-hub/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a>
+            </div>
+            <p class="copyright">Kari Dev Community. Open source, open learning.</p>
+        </div>
+    </footer>
+</body>
+</html>
