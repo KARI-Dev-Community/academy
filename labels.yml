@@ -1,0 +1,27 @@
+- name: good-first-project
+  color: '7057ff'
+  description: Great for first-time contributors
+
+- name: beginner
+  color: '0075ca'
+  description: Beginner-friendly task
+
+- name: help-needed
+  color: 'd93f0b'
+  description: Needs community input
+
+- name: mentor-review
+  color: 'fbca04'
+  description: Waiting for mentor review
+
+- name: documentation
+  color: '0075ca'
+  description: Documentation change
+
+- name: bug
+  color: 'd73a4a'
+  description: Something is broken
+
+- name: feature-request
+  color: 'a2eeef'
+  description: New feature suggestion
